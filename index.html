@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration Form</title>
+</head>
+<body>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	$name = $_POST["name"];
+	$email = $_POST["email"];
+	$phone = $_POST["phone"];
+	$gender = $_POST["gender"];
+	$interests = $_POST["interests"];
+	
+	echo "<h2>Registration Details:</h2>";
+	echo "Name: " . $name . "<br>";
+	echo "Email: " . $email . "<br>";
+	echo "Phone: " . $phone . "<br>";
+	echo "Gender: " . $gender . "<br>";
+	echo "Interests: " . implode(", ", $interests) . "<br>";
+} else {
+?>
+
+	<h2>Registration Form</h2>
+	<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+		<label>Name:</label>
+		<input type="text" name="name" required><br><br>
+		<label>Email:</label>
+		<input type="email" name="email" required><br><br>
+		<label>Phone:</label>
+		<input type="tel" name="phone" required><br><br>
+		<label>Gender:</label>
+		<input type="radio" name="gender" value="Male" checked>Male
+		<input type="radio" name="gender" value="Female">Female
+		<input type="radio" name="gender" value="Other">Other<br><br>
+		<label>Interests:</label>
+		<input type="checkbox" name="interests[]" value="Sports">Sports
+		<input type="checkbox" name="interests[]" value="Music">Music
+		<input type="checkbox" name="interests[]" value="Reading">Reading
+		<input type="checkbox" name="interests[]" value="Travel">Travel<br><br>
+		<input type="submit" value="Submit">
+	</form>
+
+<?php
+}
+?>
+
+</body>
+</html>
